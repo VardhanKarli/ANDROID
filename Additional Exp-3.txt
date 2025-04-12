@@ -1,0 +1,74 @@
+﻿MainActivity.java:
+import android.os.Bundle;
+import android.widget.CompoundButton;
+import android.widget.TimePicker;
+import android.widget.ToggleButton;
+
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+private TimePicker timePicker;
+   private ToggleButton alarmToggle;
+
+   @Override
+   protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_main);
+       
+       timePicker = findViewById(R.id.timePicker);
+       alarmToggle = findViewById(R.id.alarmToggle);
+       
+       alarmToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if (isChecked) {
+                   setAlarm();
+               } else {
+                   cancelAlarm();
+               }
+           }
+       });
+   }
+
+   private void setAlarm() {
+       int hour = timePicker.getCurrentHour();
+       int minute = timePicker.getCurrentMinute();
+       
+   }
+
+   private void cancelAlarm() {
+   }
+}
+
+activity_main.xml:
+?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent">
+<TimePicker
+       android:id="@+id/timePicker"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="50dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <ToggleButton
+       android:id="@+id/alarmToggle"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:text="Alarm On"
+       android:textOff="Alarm Off"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/timePicker" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+ Screenshot 2024-05-27 031234.png 
+     Screenshot 2024-05-27 031243.png
